@@ -9,17 +9,30 @@ namespace DotNetCore.Mappers
 {
     public static class StockMappers
     {
-        public static StockDto ToStockDto(this Stock stoclMpdel)
+        public static StockDto ToStockDto(this Stock stoclModel)
         {
             return new StockDto
             {
-                Id = stoclMpdel.Id,
-                Symbol = stoclMpdel.Symbol,
-                CompanyName = stoclMpdel.CompanyName,
-                Purchase = stoclMpdel.Purchase,
-                LastDiv = stoclMpdel.LastDiv,
-                Industry = stoclMpdel.Industry,
-                MarketCap = stoclMpdel.MarketCap
+                Id = stoclModel.Id,
+                Symbol = stoclModel.Symbol,
+                CompanyName = stoclModel.CompanyName,
+                Purchase = stoclModel.Purchase,
+                LastDiv = stoclModel.LastDiv,
+                Industry = stoclModel.Industry,
+                MarketCap = stoclModel.MarketCap
+            };
+        }
+
+        public static Stock ToStockFromCreateDTO(this CreateStockDto stockDto)
+        {
+            return new Stock
+            {
+                Symbol = stockDto.Symbol,
+                CompanyName = stockDto.CompanyName,
+                Purchase = stockDto.Purchase,
+                LastDiv = stockDto.LastDiv,
+                Industry = stockDto.Industry,
+                MarketCap = stockDto.MarketCap
             };
         }
     }

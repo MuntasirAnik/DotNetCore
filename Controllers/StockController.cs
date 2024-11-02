@@ -1,4 +1,5 @@
 using DotNetCore.data;
+using DotNetCore.DTOs.Stock;
 using DotNetCore.Mappers;
 using Microsoft.AspNetCore.Mvc;
 
@@ -31,6 +32,15 @@ namespace DotNetCore.Controllers
                 return NotFound();
             }
             return Ok(stock.ToStockDto());
+        }
+
+        [HttpPost]
+        public IActionResult Create([FromBody] CreateStockDto stockDto)
+        {
+            var stockModel = stockDto.ToStockFromCreateDTO();
+            _context.Stocks.Add(stockModel);
+            _context.SaveChanges();
+            return CreatedAtAction(nameof(GetById), new {id = stockModel.Id}, stockModel.ToStockDto());
         }
     }
 }
