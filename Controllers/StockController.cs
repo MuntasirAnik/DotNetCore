@@ -42,5 +42,27 @@ namespace DotNetCore.Controllers
             _context.SaveChanges();
             return CreatedAtAction(nameof(GetById), new {id = stockModel.Id}, stockModel.ToStockDto());
         }
+
+        [HttpPut]
+        [Route("{id}")]
+        public IActionResult Update([FromRoute] int id, [FromBody] UpdateStockDto updateStock)
+        {
+            var stockModel = _context.Stocks.FirstOrDefault(s => s.Id == id);
+            if(stockModel == null)
+            {
+                return NotFound();
+            }
+
+            stockModel.Symbol = updateStock.Symbol;
+            stockModel.CompanyName = updateStock.CompanyName;
+            stockModel.Purchase = updateStock.Purchase;
+            stockModel.LastDiv = updateStock.LastDiv;
+            stockModel.Industry = updateStock.Industry;
+            stockModel.MarketCap = updateStock.MarketCap;
+
+            _context.SaveChanges();
+
+            return Ok(stockModel.ToStockDto());
+        }
     }
 }
