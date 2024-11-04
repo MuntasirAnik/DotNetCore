@@ -3,7 +3,6 @@ using DotNetCore.DTOs.Stock;
 using DotNetCore.Interfaces;
 using DotNetCore.Mappers;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 
 namespace DotNetCore.Controllers
 {
@@ -24,7 +23,7 @@ namespace DotNetCore.Controllers
         {
             var stocks = await _stockRepo.GetAllAsync();
             var stockDto = stocks.Select(s => s.ToStockDto());
-            return Ok(stocks);
+            return Ok(stockDto);
         }
 
         [HttpGet("{id}")]

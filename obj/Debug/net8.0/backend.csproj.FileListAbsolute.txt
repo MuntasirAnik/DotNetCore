@@ -176,3 +176,7 @@ D:\STUDY\New folder (2)\Backend\DotNetCore\obj\Debug\net8.0\scopedcss\bundle\bac
 D:\STUDY\New folder (2)\Backend\DotNetCore\obj\Debug\net8.0\backend.csproj.Up2Date
 D:\STUDY\New folder (2)\Backend\DotNetCore\obj\Debug\net8.0\backend.genruntimeconfig.cache
 D:\STUDY\New folder (2)\Backend\DotNetCore\obj\Debug\net8.0\ref\backend.dll
+D:\STUDY\New folder (2)\Backend\DotNetCore\bin\Debug\net8.0\Microsoft.AspNetCore.JsonPatch.dll
+D:\STUDY\New folder (2)\Backend\DotNetCore\bin\Debug\net8.0\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
+D:\STUDY\New folder (2)\Backend\DotNetCore\bin\Debug\net8.0\Newtonsoft.Json.dll
+D:\STUDY\New folder (2)\Backend\DotNetCore\bin\Debug\net8.0\Newtonsoft.Json.Bson.dll

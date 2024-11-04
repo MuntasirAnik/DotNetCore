@@ -19,7 +19,8 @@ namespace DotNetCore.Mappers
                 Purchase = stoclModel.Purchase,
                 LastDiv = stoclModel.LastDiv,
                 Industry = stoclModel.Industry,
-                MarketCap = stoclModel.MarketCap
+                MarketCap = stoclModel.MarketCap,
+                Comments = stoclModel.Comments.Select(c =>c.ToCommentDto()).ToList()
             };
         }
 
