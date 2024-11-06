@@ -180,3 +180,5 @@ D:\STUDY\New folder (2)\Backend\DotNetCore\bin\Debug\net8.0\Microsoft.AspNetCore
 D:\STUDY\New folder (2)\Backend\DotNetCore\bin\Debug\net8.0\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
 D:\STUDY\New folder (2)\Backend\DotNetCore\bin\Debug\net8.0\Newtonsoft.Json.dll
 D:\STUDY\New folder (2)\Backend\DotNetCore\bin\Debug\net8.0\Newtonsoft.Json.Bson.dll
+D:\STUDY\New folder (2)\Backend\DotNetCore\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+D:\STUDY\New folder (2)\Backend\DotNetCore\bin\Debug\net8.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
