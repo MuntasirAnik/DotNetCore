@@ -19,10 +19,23 @@ namespace DotNetCore.data
         }
         public DbSet<Stock> Stocks {get; set;}
         public DbSet<Comment> Comments {get; set;}
+        public DbSet<Portfolio> portfolios {get; set;}
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+
+            modelBuilder.Entity<Portfolio>(x => x.HasKey(p => new {p.UserId, p.StokcId}));
+
+            modelBuilder.Entity<Portfolio>()
+            .HasOne(u => u.User)
+            .WithMany(u => u.Portfolios)
+            .HasForeignKey(u => u.UserId);
+
+             modelBuilder.Entity<Portfolio>()
+            .HasOne(u => u.Stock)
+            .WithMany(u => u.Portfolios)
+            .HasForeignKey(u => u.StokcId);
 
             List<IdentityRole> roles = new List<IdentityRole>
             {

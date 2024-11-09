@@ -8,6 +8,7 @@ namespace DotNetCore.Interfaces
     {
         Task<List<Stock>> GetAllAsync(QueryObject query);
         Task<Stock?> GetByIdAsync(int id);
+        Task<Stock?> GetBySymbolAsync(string symbol);    
         Task<Stock> CreateAyncs(Stock stockModel);
         Task<Stock?> UpdateAyncs(int id, UpdateStockDto stockDto);
         Task<Stock?> DeleteByIdAsync(int id); 
