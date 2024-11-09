@@ -3,6 +3,7 @@ using DotNetCore.DTOs.Stock;
 using DotNetCore.Helpers;
 using DotNetCore.Interfaces;
 using DotNetCore.Mappers;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DotNetCore.Controllers
@@ -20,6 +21,7 @@ namespace DotNetCore.Controllers
         }
 
         [HttpGet]
+        [Authorize]
         public async Task<IActionResult> GetAll([FromQuery] QueryObject query)
         {
             var stocks = await _stockRepo.GetAllAsync(query);
