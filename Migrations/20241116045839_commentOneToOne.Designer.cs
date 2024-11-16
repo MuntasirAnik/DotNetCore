@@ -4,6 +4,7 @@ using DotNetCore.data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace backend.Migrations
 {
     [DbContext(typeof(ApplicationDBContext))]
-    partial class ApplicationDBContextModelSnapshot : ModelSnapshot
+    [Migration("20241116045839_commentOneToOne")]
+    partial class commentOneToOne
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -131,13 +134,13 @@ namespace backend.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "edd9e46f-a28b-4540-a6c7-83e742c4a9c5",
+                            Id = "9f401109-26b2-477b-89dc-636a19695af3",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = "14268834-7329-41b8-a804-8a28bc10762c",
+                            Id = "14e8bed9-cb9d-4e37-a065-9b39f1a317dd",
                             Name = "User",
                             NormalizedName = "USER"
                         });
@@ -271,15 +274,9 @@ namespace backend.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("UserId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
                     b.HasKey("Id");
 
                     b.HasIndex("StockId");
-
-                    b.HasIndex("UserId");
 
                     b.ToTable("Comments");
                 });
@@ -394,15 +391,7 @@ namespace backend.Migrations
                         .WithMany("Comments")
                         .HasForeignKey("StockId");
 
-                    b.HasOne("DotNetCore.Models.User", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.Navigation("Stock");
-
-                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("DotNetCore.Models.User", b =>

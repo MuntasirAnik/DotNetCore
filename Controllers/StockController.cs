@@ -21,11 +21,11 @@ namespace DotNetCore.Controllers
         }
 
         [HttpGet]
-        [Authorize]
+        // [Authorize]
         public async Task<IActionResult> GetAll([FromQuery] QueryObject query)
         {
             var stocks = await _stockRepo.GetAllAsync(query);
-            var stockDto = stocks.Select(s => s.ToStockDto());
+            var stockDto = stocks.Select(s => s.ToStockDto()).ToList();
             return Ok(stockDto);
         }
 
