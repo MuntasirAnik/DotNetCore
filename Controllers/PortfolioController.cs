@@ -1,7 +1,4 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+
 using DotNetCore.Extensions;
 using DotNetCore.Interfaces;
 using DotNetCore.Models;
@@ -18,11 +15,13 @@ namespace DotNetCore.Controllers
         private readonly UserManager<User> _userManager;
         private readonly IStockRepository _stockRepo;
         private readonly IPortfolioRepository _portfolioRepo;
-        public PortfolioController(UserManager<User> userManager, IStockRepository stockRepo, IPortfolioRepository portfolioRepo)
+        private readonly IFMPService _fmpService;
+        public PortfolioController(UserManager<User> userManager, IStockRepository stockRepo, IPortfolioRepository portfolioRepo, IFMPService fmpService)
         {
             _userManager = userManager;
             _stockRepo = stockRepo;
             _portfolioRepo = portfolioRepo;
+            _fmpService = fmpService;
         }
 
         [HttpGet]
@@ -43,8 +42,20 @@ namespace DotNetCore.Controllers
             var username = User.GetUsername();
             var user = await _userManager.FindByNameAsync(username);
             var stock = await _stockRepo.GetBySymbolAsync(symbol);
+            if(stock == null)
+            {
+                stock = await _fmpService.FindStockBySymbolAsync(symbol);
+                if(stock == null)
+                {
+                    return BadRequest("Stock does not exists");
+                }
+                else
+                {
+                    await _stockRepo.CreateAyncs(stock);
+                }
+            }
 
-            if(stock == null) return BadRequest("Stock not found");
+            // if(stock == null) return BadRequest("Stock not found");
 
             var userPortfolio = await _portfolioRepo.GetUserPortfolio(user);
 
